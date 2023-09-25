@@ -34,6 +34,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
+        "optimize-autoloader": true,
         "discard-changes": true,
         "sort-packages": true,
         "allow-plugins": {
@@ -51,6 +52,12 @@
         "files": ["load.environment.php"]
     },
     "scripts": {
+        "update-core": "@composer update drupal/core 'drupal/core-*' --with-all-dependencies",
+        "theme-build": "npm --prefix web/themes/custom/THEME/ run build",
+        "theme-watch": [
+            "Composer\\Config::disableProcessTimeout",
+            "npm --prefix web/themes/custom/THEME/ run watch"
+        ],
         "pre-install-cmd": [
             "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
         ],
@@ -76,8 +83,18 @@
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/Commands/contrib/{$name}": ["type:drupal-drush"]
+            "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/profiles/custom/{$name}": [
+                "type:drupal-custom-profile"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
         },
+        "installer-types": [],
         "composer-exit-on-patch-failure": true,
         "patchLevel": {
             "drupal/core": "-p2"
