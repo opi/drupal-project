@@ -21,8 +21,8 @@
         "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.4",
         "drupal/backup_migrate": "^5.0",
-        "drupal/core-composer-scaffold": "^10.0.0",
-        "drupal/core-recommended": "^10.0.0",
+        "drupal/core-composer-scaffold": "^10",
+        "drupal/core-recommended": "^10",
         "drupal/entity_reference_revisions": "^1.10",
         "drupal/field_group": "^3.4",
         "drupal/gin": "^3.0@RC",
@@ -40,14 +40,16 @@
         "drupal/save_edit": "^1.7",
         "drupal/smart_trim": "^2.1",
         "drupal/string_field_formatter": "^2.0",
+        "drupal/vitals": "^2.5",
+        "drupal/vitals_extra": "^1.2",
         "drupal/xmlsitemap": "^1.5",
-        "drush/drush": "^11.4.0",
+        "drush/drush": "^13",
         "vlucas/phpdotenv": "^5.1",
         "webflo/drupal-finder": "^1.2"
     },
     "require-dev": {
-        "drupal/core-dev": "^10.0.0",
-        "drupal/devel": "^5.1",
+        "drupal/core-dev": "^10",
+        "drupal/devel": "^5",
         "drupal/reroute_email": "^2.2"
     },
     "conflict": {
@@ -64,7 +66,9 @@
             "cweagans/composer-patches": true,
             "drupal/core-composer-scaffold": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "php-http/discovery": true,
+            "tbachert/spi": true
         }
     },
     "autoload": {
@@ -122,6 +126,12 @@
             "drupal/core": "-p2"
         },
         "patches": {
+            "drupal/core": {
+                "[3487031] Performance Degraded after update to twig 3.14.2" : "https://git.drupalcode.org/project/drupal/-/merge_requests/10177.patch"
+            },
+            "drupal/vitals_extra": {
+                "[3472551] Add Hard Drive metrics": "https://git.drupalcode.org/project/vitals_extra/-/merge_requests/4.patch"
+            }
         }
     }
 }
